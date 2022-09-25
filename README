@@ -1,0 +1,108 @@
+FIRST (BEFORE WEBPACK)
+1. live-server and babel-cli installed globally (disadvantage of install globally. 1. those package are not available in package.json file. 2. more difficult if we handle more than one react app with different babel-cli version (better to install locally))
+2. import React and react-dom script in index.html
+
+
+AFTER (DURING WEBPACK SETUP)
+1. REMOVE react and react-dom script from index.html and start using npm version of react and react-dom (ie npm install live-server babel-cli@6.24.1)
+2. live-server and babel installed locally using npm (ie npm install live-server babel-cli@6.24.1)
+3. npm install babel-core@6.25.0 babel-loader@7.1.1
+3. install webpack
+4. create webpack.config.js file ====> here we add all the configuration which are related by webpack and react application
+
+create .babelrc and define presets array with env and react ====> which will be automatically managed by babel-loader defined in webpack.config.js file
+
+
+REACT STYLING
+1. we are using scss/sass and convert into css using following loader in webpack.config.js(using webpack)
+    a. npm install --save css-loader@0 style-loader@0 sass-loader@6.0.6 node-sass@4 --loglevel info
+2. add new rules in module in webpack.config.js file  
+3. separate single file into multiple file. 
+4. have one root/main scss file, that file contain all the import of multiple files
+5. import that root file into main/root react js file here called app.js
+6. to avoid browser default styles --- we need to use normalize which is available in npm ---- import it into the app.js file
+    a. npm install normalize.css@7
+
+
+REACT ROUTING
+1. install react router in our application
+    a. npm install react-router ==> to install all the react router ie browser router, mobile router, desktop router
+    b. npm install react-router-dom ==> will install only the browser router
+2. import react-router-dom in our routing file 
+3. important keyword we must need to remember as following
+    a. BrowserRouter ==> its a tag in jsx, inside that we need to define all the route in our application
+    b. Switch       ===> best way of routing, it route only a first matching path in the route definition
+    c. Route        ===> use to define path and component (on which path do I need to render the specific component)
+    d. Link, NavLink ==> route from one component to another component by clicking the button etc.,
+
+
+
+
+REDUX
+1. it will help us to maintain the centralize data called store in the large scale application
+2. advantages are 
+    loosely coupled 
+3. npm install redux@5 ==> to install redux in our application
+4. createStore keyword is used to create the redux store in our application
+    it required/need reducers function which have two args, 
+        state  ==> need to set the default object/array, it maintain the previous state like setState function in react
+        action ==> have type and value, type used to find the case/condition, value used to do some business logics
+5. subscribe will use to call each time the value has been changed or returned from the store
+6. dispatch is used to call the reducer in the store to emit its value based on the condition defined in createStore
+    dispatch required type field and additional fields are value which we use to do some business logics inside of reducers in createStore
+7. important keyword we must need to remember as following
+    a. store     ==> we configure the store with libraries of createStore and combineReducers (to combine more than one reducers in single store)
+    b. reducers  ==> contains prevState and action, function have switch condition if it match then case do some logics and final we need to return value
+    c. action    ==> for each type we should create function so the dispatch use it
+    d. selectors ==> some function which have complex functionality
+    e. apart from the above remaining are
+        1. store variable name ie (const store = createStore(state={}, action))
+        2. store.subscribe
+        3. store.dispatch
+
+
+REACT-REDUX
+1. implement redux in our react application
+2. organize or separate the redux single field into a multiple part refer Expensify application
+    a. store      ==> contain store config details
+    b. reducers   ==> contains reducers details in different field (ie one reducer in one file)
+    c. action     ==> contains function which is use by store dispatch
+    d. selectors  ==> contains complex functionality
+3. need to insall transfrom-object-rest-spread in the babel because without that we cannot able to use the spread operator in the object like ({...user, ...department})
+    a. npm install babel-plugin-transform-object-rest-spread@6
+4. install momentumjs in our application to handle the date and time, timestamp etc.,
+    a. npm install momentum@2
+5. install react datepicker in our application (airbnb/react-dates)
+    a. npm install react-dates@12
+    b. npm install react-addons-shallow-compare@15 ==> its a utility library used by react dates
+6. install Redux Devtool to monitor the store action etc.,
+    a. for reference https://github.com/zalmoxisus/redux-devtools-extension
+    b. install Redux Devtool chrome extension
+    c. add window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() in createStore 
+
+
+
+REACT TESTING OR TESTCASE
+1. Jest is the test framework that we use to test our application. it is very useful in a large scale application
+    a. for more reference https://jestjs.io/docs/getting-started
+2. for testcases we need install jest(which is a best options for react application)
+    a. npm install jest@20
+    b. add script in package.json file
+3. npm run test ==> used to run the testcases --- test is the keyword defined in scripts object in package.json
+4. testcase filename must be end with "test.js" eg., add.test.js
+5. expect().toBe() ==> is not working with object and array because internally it use === to avoid that we use toEqual() function
+6. expect.any() ==> basically used for if that field return generic/dynamic value it only care about type like string, number etc., it doesn't care about same value
+7. snapshot
+8. react-test-renderer ==> allow us to render our component inside of just regular javascript code and then we can assert something about what got rendered. it is not a complex library. It only designed to be a very simple utility for rendering an enzyme does use it.
+    a. npm install react-test-renderer@16 ==> if using react version 16 in our application
+9. enzyme ==> which is released by airbnb, Enzyme is a renderer for react, but it is a much more full featured renderer react test.
+    a. npm install enzyme@3.0.0
+    b. npm install enzyme-adapter-react-16@1.0.0
+    c. npm install raf@3.3.2 ==> require animation frame(raf)
+    d. for more reference:- https://enzymejs.github.io/enzyme/
+10. setupTests.js ==> create this js file inside of tests folder and add the code to wiring up enzyme and enzyme adapter together to work in our application
+11. jest.config.json ==> file has been created in the root folder (ie. create file in the place of where the package.json located)
+12. change the script object inside of package.json file as
+    a. "test": "jest --config=jest.config.json"
+13. enzyme-to-json ==> need to install for test, using this will take correct snapshot what contain we have in component without this the enzyme add its additional content in the snapshot
+    a. npm install enzyme-to-json@3.0.1
