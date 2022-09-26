@@ -106,3 +106,20 @@ REACT TESTING OR TESTCASE
     a. "test": "jest --config=jest.config.json"
 13. enzyme-to-json ==> need to install for test, using this will take correct snapshot what contain we have in component without this the enzyme add its additional content in the snapshot
     a. npm install enzyme-to-json@3.0.1
+
+
+WEBPACK PRODUCTION
+1. create new script field called build:prod with -p and set environment variable of production so when we run that will pass variable to webpack.config.js file
+2. add source-map in devServer which is little slow we should use only for production to minimize our code ==> refer webpack.config.js file
+3. instead of add style in style tag in html. we have to write into the separate css file with the help of below npm
+    a. npm install extract-text-webpack-plugin@3.0.0
+    b. add extract-text-webpack-plugin ==> refer webpack.config.js file
+    c. changing eval-cheap-source-map to inline-source-map because few issues when working with css
+    d. change css modules ==> refer webpack.config.js file
+
+
+
+
+ISSUES
+1. ERROR in bundle.js from UglifyJs in uuid when do webpack production
+    issues fixed by changing uuid version 9 to uuid version 3.1.0
