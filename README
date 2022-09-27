@@ -118,6 +118,20 @@ WEBPACK PRODUCTION
     d. change css modules ==> refer webpack.config.js file
 
 
+HEROKU
+1. signup heroku free without providing credit card details
+2. install heroku in our machine using installer if window or mac 
+    refer ==> https://devcenter.heroku.com/articles/heroku-cli
+3. after install heroku restart your system and type heroku --version in the command prompt it shows the version if not then the heroku is not installed in your machine
+4. heroku login
+5. heroku create <some folder name> like heroku create react-course-2010-expensify
+    a. check by typing git remote in terminal will u see heroku and origin 
+6. make sure start field is added in script object in package.json file
+7. heroku provide dynamic port for node main file. heroku does not support static port
+    a. heroku pass port in environment variable so we change few things in server.js file
+8. open package.json file to do heroku config in script object
+    a. heroku-prebuild ==> will run before install all of the dependencies
+    a. heroku-postbuild ==> will run after install all of the dependencies so if you are using grunt, gulp or webpack, you would put here to build eg: heroku-postbuild: "npm run build:prod"
 
 
 ISSUES
