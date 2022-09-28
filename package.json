@@ -30,6 +30,7 @@
     "momentum": "^2.0.0",
     "node-sass": "^7.0.3",
     "normalize.css": "^7.0.0",
+    "numeral": "^2.0.6",
     "raf": "^3.3.2",
     "react": "^16.14.0",
     "react-dates": "^12.7.1",
