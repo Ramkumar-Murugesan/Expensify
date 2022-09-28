@@ -132,6 +132,12 @@ HEROKU
 8. open package.json file to do heroku config in script object
     a. heroku-prebuild ==> will run before install all of the dependencies
     a. heroku-postbuild ==> will run after install all of the dependencies so if you are using grunt, gulp or webpack, you would put here to build eg: heroku-postbuild: "npm run build:prod"
+9. git push heroku ==> will push your changes into heroku repo and its will automatically build based on script provided in package.json file and few changes in node main file
+10. after git push heroku successed ==> typing heroku open in the same dir in terminal ==> will open our deployed application in browser
+11. heroku logs ==> to see logs in terminal
+12. remove unnecessary/unwanted dependencies from package.json and also replacing dependencies into devDependencies which is not used in production only used in dev. refer ==> our package.json
+    a. npm install ==> will install all the dependencies and devDependencies object from package.json
+    b. npm install --production ==> will install only the dependencies object from package.json
 
 
 ISSUES

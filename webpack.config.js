@@ -11,7 +11,7 @@ module.exports = (env) => {
     return {
     entry: './src/app.js',   // use to register the webpack entry file without that webpack won't work 
     output: {               // use to register the webpack output path and file name without that webpack won't work
-        path: path.join(__dirname, 'public'), // absoulte path
+        path: path.join(__dirname, 'public', 'dist'), // absoulte path
         filename: 'bundle.js'                        // output file name that we need to include as script in index.html file
     },
     module: {                                        // help us to load module 
@@ -45,7 +45,8 @@ module.exports = (env) => {
     devtool: isProduction ? 'source-map' : 'inline-source-map',                // changing eval-cheap-source-map to inline-source-map because eval-cheap-source-map is not working properly for css files
     devServer: {
         contentBase: path.join(__dirname, 'public'),  // to define live-server, defined path should be same as output path otherwise the auto-reload is not working and also some functional not working properly if the path is not same 
-        historyApiFallback: true                      // avoid entire page redirect i.e when we route from one component to another first it will go to server side routing to avoid that we use this. will redirect to index.html file and then routing js file
+        historyApiFallback: true,                      // avoid entire page redirect i.e when we route from one component to another first it will go to server side routing to avoid that we use this. will redirect to index.html file and then routing js file
+        publicPath: '/dist/'
     }
     // module: {
     //     rules: [{
