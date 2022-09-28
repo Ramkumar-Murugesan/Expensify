@@ -16,18 +16,18 @@ const store = configureStore();
 console.log('app store ', store.getState())
 
 // add Expenses --> Gas bill
-store.dispatch(addExpense({ description: 'Gas bill', amount: 4500 }));
-// add Expenses --> Water bill
-store.dispatch(addExpense({ description: 'Water bill',  createdAt: 1000 }));
-// add Expenses --> Rent
-store.dispatch(addExpense({ description: 'Rent', amount: 10950 }));
-// setTextFilter ---> bill
+// store.dispatch(addExpense({ description: 'Gas bill', amount: 4500 }));
+// // add Expenses --> Water bill
+// store.dispatch(addExpense({ description: 'Water bill',  createdAt: 1000 }));
+// // add Expenses --> Rent
+// store.dispatch(addExpense({ description: 'Rent', amount: 10950 }));
+// // setTextFilter ---> bill
 // store.dispatch(setTextFilter('bill'))
 // getVisibleExpenses ---> print visibles ones to screen
-const state = store.getState();
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+// const state = store.getState();
+// const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 
-console.log('visibleExpenses   ', visibleExpenses)
+// console.log('visibleExpenses   ', visibleExpenses)
 
 // setTimeout(() => {store.dispatch(setTextFilter('water'))}, 3000)
 
