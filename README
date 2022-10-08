@@ -106,6 +106,7 @@ REACT TESTING OR TESTCASE
     a. "test": "jest --config=jest.config.json"
 13. enzyme-to-json ==> need to install for test, using this will take correct snapshot what contain we have in component without this the enzyme add its additional content in the snapshot
     a. npm install enzyme-to-json@3.0.1
+14. npm i redux-mock-store@1.2.3 --save-dev ==> to mock the redux store or any database integrating with redux
 
 
 WEBPACK PRODUCTION
@@ -140,6 +141,35 @@ HEROKU
     b. npm install --production ==> will install only the dependencies object from package.json
 
 
-ISSUES
+
+FIREBASE
+1. go to https://firebase.google.com/ and click go to console button in top right corner OR directly open https://console.firebase.google.com/
+2. create new project
+3. check read and write permission in realtime database
+4. create web option in overview tab
+5. after click web will ask web-name and few other info. do step and complete it
+6. web project is now completed and provide a connection details
+7. https://firebase.google.com/docs/reference/node/firebase.database.Reference ==> for more reference of knowing database method 
+8. IN our application create new folder called firebase and new file called firebase.js inside that add config info ==> for more details refer this project
+
+FIREBASE WITH REDUX
+1.  to use firebase database in our redux
+    a. npm install redux-thunk@2
+    b. import thunk and use in redux store config file called store/configureStore.js ==> for more details refer this file for how to config database in redux
+    c. add new method in existing files in actions folder ==> method do the database action and then dispatch to another method
+    d. for more details ==> https://www.npmjs.com/package/redux-thunk
+
+
+SETUP ENV VARIABLE OR DATABASE CONFIG DETAILS
+1. to use 2 database config one for developement and one for testing. then we have to do the following 
+2. install 2 npm to handle env variable
+    a. npm install --save-dev cross-env ==> to set the cross env in webpack for testing 
+    b. npm install dotenv ==> to access .env files
+    
+heroku config
+heroku config:set key=value
+heroku config:unset key
+
+ERROR/ISSUES 
 1. ERROR in bundle.js from UglifyJs in uuid when do webpack production
     issues fixed by changing uuid version 9 to uuid version 3.1.0

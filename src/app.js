@@ -1,5 +1,7 @@
 import React from 'react';
 import  ReactDOM  from 'react-dom';
+
+import 'normalize.css/normalize.css';
 import './styles/style.scss'
 import 'react-dates/lib/css/_datepicker.css';
 
@@ -10,6 +12,8 @@ import getVisibleExpenses from './selectors/expenses';
 
 import AppRouter from './router/AppRouter';
 import { Provider } from 'react-redux';
+
+import './firebase/firebase'
 
 const store = configureStore();
 
