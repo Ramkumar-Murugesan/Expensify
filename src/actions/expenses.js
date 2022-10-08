@@ -59,12 +59,33 @@ export const removeExpense = ({ id = '' }) => (
         id
     }
 )
+
+export const startRemoveExpense = (id) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).remove()
+    .then(() => {
+      dispatch(removeExpense({id}));
+    })
+    .catch(err => console.log('err while remove expenses  ', err))
+  }
+}
+
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
     type: 'EDIT_EXPENSE',
     id,
     updates
 })
+
+export const startEditExpense = (id, updateObj) => {
+  return(dispatch) => {
+    return database.ref(`expenses/${id}`).update(updateObj)
+    .then(() => {
+      dispatch(editExpense(id, updateObj));
+    })
+    .catch(err => console.log('err while update expenses  ', err))
+  }
+}
 
 // SET_EXPENSES
 export const setExpenses = (expenses) => ({
@@ -85,6 +106,6 @@ export const startSetExpenses = () => {
       })
       dispatch(setExpenses(expenses));
     })
-    .catch(err => console.log('err fetching data ', err))
+    .catch(err => console.log('err while fetching expenses data ', err))
   }
 }
