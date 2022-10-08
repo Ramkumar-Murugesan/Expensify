@@ -1,6 +1,6 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { startAddExpense, addExpense, editExpense, removeExpense } from '../../actions/expenses';
+import { startAddExpense, addExpense, editExpense, removeExpense, setExpenses } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 // import database from '../../firebase/firebase';
@@ -35,7 +35,7 @@ test('should setup add expense action object with provided values', () => {
   });
 });
 
-test('should add expense to database and store',  (done) => {
+test('should add expense to database and store', () => {
   const store = createMockStore({});
   const expenseData = {
     description: 'Mouse',
@@ -55,13 +55,15 @@ test('should add expense to database and store',  (done) => {
   // .catch(err => {
   //   // done(err)
   // });
-  return database.ref('expenses').push(expenseData).then(() => {
-    console.log('data inserted');
-    done();
-  }).catch(err => {
-    console.log('error data  ', err)
-    done();
-  })
+
+  // direct database connection
+  // return database.ref('expenses').push(expenseData).then(() => {
+  //   console.log('data inserted');
+  //   done();
+  // }).catch(err => {
+  //   console.log('error data  ', err)
+  //   done();
+  // })
 });
 
 test('should add expense with defaults to database and store', () => {
@@ -81,3 +83,17 @@ test('should add expense with defaults to database and store', () => {
 //     }
 //   });
 // });
+
+
+// set expenses test 
+test('should set expenses action object', () => {
+  const action = setExpenses([expenses[0]])
+  expect(action).toEqual({
+    type: 'SET_EXPENSES',
+    expenses: [expenses[0]]
+  })
+})
+
+test('should fetch the expenses from firebase ', () => {
+  
+})

@@ -165,10 +165,17 @@ SETUP ENV VARIABLE OR DATABASE CONFIG DETAILS
 2. install 2 npm to handle env variable
     a. npm install --save-dev cross-env ==> to set the cross env in webpack for testing 
     b. npm install dotenv ==> to access .env files
+3. add cross-env NODE_ENV=test in test field in script object in package.json file
+4. need to change few things in webpack.config.js file
+    a. check node_env variable name and load specific files with the help of dotenv library
+    b. add new webpack.definePlugin in plugin config
+5. add dotenv config in tests/setupTests.js file
+6. to config database details in heroku. do the following
+    a. heroku config
+    b. heroku config:set key=value
+    c. heroku config:unset key
     
-heroku config
-heroku config:set key=value
-heroku config:unset key
+
 
 ERROR/ISSUES 
 1. ERROR in bundle.js from UglifyJs in uuid when do webpack production
