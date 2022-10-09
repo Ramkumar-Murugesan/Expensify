@@ -6,7 +6,7 @@ import React from "react";
 import { shallow } from 'enzyme';
 // add globally for our application in jest.config.json --> so no need to import every file. it automatically convert it
 // import toJSON from 'enzyme-to-json';
-import Header from '../../component/Header';
+import {Header} from '../../component/Header';
 
 
 // enzyme shallow renderer example
@@ -19,6 +19,13 @@ test('should render header correctly', () => {
     // expect(wrapper.find('h1').text()).toBe("Expensify")
 })
 
+
+test('should call startLogout on button click', () => {
+    const startLogout = jest.fn();
+    const wrapper = shallow(<Header startLogout={startLogout} />);
+    wrapper.find('button').simulate('click');
+    expect(startLogout).toHaveBeenCalled();
+  });
 
 // React shallow renderer example
 // test('should render header correctly', () => {

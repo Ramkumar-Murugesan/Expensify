@@ -19,8 +19,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider;
 
-export {firebase, database as default};
+export {firebase, googleAuthProvider, database as default};
 
 // // play with arrays
 // // 1. firebase doesn't support array to directly add in get: database.ref().set([{},{}]). if we do then it store in array structured object in our database

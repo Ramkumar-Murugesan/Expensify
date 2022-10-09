@@ -10,11 +10,11 @@ import { startSetExpenses } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 
-import AppRouter from './router/AppRouter';
+import AppRouter, {history} from './router/AppRouter';
 import { Provider } from 'react-redux';
 
-import './firebase/firebase'
-
+import { firebase } from './firebase/firebase';
+import { login, logout } from './actions/auth';
 const store = configureStore();
 
 console.log('app store ', store.getState())
@@ -45,8 +45,46 @@ const jsx = (
 
 ReactDOM.render(<p>Loading....</p>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(jsx, document.getElementById('app'));
+let isRendered = false;
+// to avoid render 2 times
+const renderApp = () => {
+    if(!isRendered) {
+        ReactDOM.render(jsx, document.getElementById('app'));
+        isRendered = true;
+    }
+}
+
+
+firebase.auth().onAuthStateChanged((user) => {
+    if(user) {
+        console.log('user logged in ', user)
+        store.dispatch(login(user.uid));
+        store.dispatch(startSetExpenses()).then(() => {
+            renderApp();
+            if(location.pathname === '/') {
+                history.push('/dashboard')
+            }
+        })
+    } else {
+        console.log('user logged out')
+        store.dispatch(logout());
+        renderApp();
+        history.push('/')
+    }
 })
 
+// without authentication
+// store.dispatch(startSetExpenses()).then(() => {
+//     ReactDOM.render(jsx, document.getElementById('app'));
+// })
+
 // ReactDOM.render(jsx, document.getElementById('app'));
+
+// basics
+// firebase.auth().onAuthStateChanged((user) => {
+//     if(user) {
+//         console.log('user logged in')
+//     } else {
+//         console.log('user logged out')
+//     }
+// })

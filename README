@@ -174,8 +174,26 @@ SETUP ENV VARIABLE OR DATABASE CONFIG DETAILS
     a. heroku config
     b. heroku config:set key=value
     c. heroku config:unset key
-    
+      
 
+GOOGLE AUTHENICATION WITH FIREBASE
+1. enable google auth provider in firebase console called authenication tab in left menu click that and then click google and setup google provider
+2. config google auth provider in firebase/firebase.js file and export it
+3. create new file called auth.js in action folder
+    a. add new method called startLogin to login the user with the help of google auth provider
+    b. add new method called startLogout to logout the user
+4. create new component called loginpage and add button to login
+5. to handle redirect page need to install history npm
+    a. npm install history
+    b. replacing browserRouter tag to Router tag because BrowserRouter have only default config history in AppRouter.js file
+
+
+ROUTE AUTH GUARD LIKE IN ANGULAR
+1. create new stateless functional component called PrivateRoute.js file in router folder
+    a. get the auth uid from state in store called isAuthenticated variable used in the file will return true if uid present if not return false
+    b. destructuring  isAuthenticated, component and rest of the props using any name (but in file we use variable name called rest)
+    c. define Route tag with some condition to check if the user is valid then route to component if not then we redirect to login page with the help of Redirect tag from react-router-dom library.
+2. replacing Route to PrivateRoute in AppRouter.js file to guard our route if unauthorized user trying to redirect to private route
 
 ERROR/ISSUES 
 1. ERROR in bundle.js from UglifyJs in uuid when do webpack production
