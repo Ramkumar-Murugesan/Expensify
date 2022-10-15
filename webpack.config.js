@@ -18,7 +18,7 @@ module.exports = (env) => {
     const CSSExtract = new ExtractTextPlugin("styles.css");
 
     return {
-    entry: './src/app.js',   // use to register the webpack entry file without that webpack won't work 
+    entry: ['babel-polyfill', './src/app.js'],   // use to register the webpack entry file without that webpack won't work 
     output: {               // use to register the webpack output path and file name without that webpack won't work
         path: path.join(__dirname, 'public', 'dist'), // absoulte path
         filename: 'bundle.js'                        // output file name that we need to include as script in index.html file

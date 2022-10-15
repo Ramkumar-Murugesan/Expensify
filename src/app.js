@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 
 import { firebase } from './firebase/firebase';
 import { login, logout } from './actions/auth';
+import LoadingPage from './component/LoadingPage';
 const store = configureStore();
 
 console.log('app store ', store.getState())
@@ -41,10 +42,6 @@ const jsx = (
     </Provider>
 )
 
-
-
-ReactDOM.render(<p>Loading....</p>, document.getElementById('app'));
-
 let isRendered = false;
 // to avoid render 2 times
 const renderApp = () => {
@@ -54,6 +51,7 @@ const renderApp = () => {
     }
 }
 
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if(user) {

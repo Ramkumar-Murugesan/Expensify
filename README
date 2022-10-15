@@ -195,6 +195,11 @@ ROUTE AUTH GUARD LIKE IN ANGULAR
     c. define Route tag with some condition to check if the user is valid then route to component if not then we redirect to login page with the help of Redirect tag from react-router-dom library.
 2. replacing Route to PrivateRoute in AppRouter.js file to guard our route if unauthorized user trying to redirect to private route
 
+BIBLE POLYFILL
+1. It allows our application to run in a wide range of browser and browser versions
+2. npm install babel-polyfill@6.26.0 ==> to install babel-ployfill in our application
+3. then change the entry field in webpack.config.js file (for refer check this file)
+
 ERROR/ISSUES 
 1. ERROR in bundle.js from UglifyJs in uuid when do webpack production
     issues fixed by changing uuid version 9 to uuid version 3.1.0

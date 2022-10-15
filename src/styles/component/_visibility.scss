@@ -1,0 +1,17 @@
+.show-for-mobile {
+
+    // for desktop screen -- diff is min width
+    @media (min-width: $desktop-breakpoint) {
+        display: none;
+    }
+
+}
+
+
+.show-for-desktop {
+
+    // for mobile screen --- diff is max width
+    @media (max-width: ($desktop-breakpoint - .01rem)) {
+        display: none;
+    }
+}
